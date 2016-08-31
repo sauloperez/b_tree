@@ -9,12 +9,37 @@ describe BTree::LeafNode do
     subject { leaf_node.find(key) }
 
     let(:key) { 11 }
-    let(:entries) { [instance_double(BTree::Entry)] }
+    let(:entries) { [instance_double(BTree::Entry, key: 11)] }
 
-    it { is_expected.to eq(123) }
+    context 'when there is just one entry' do
+      let(:entries) { [instance_double(BTree::Entry, key: 11)] }
+      it { is_expected.to eq(entries) }
+    end
+
+    context 'when there are multiple entries' do
+      let(:entries) do
+        [
+          instance_double(BTree::Entry, key: 11),
+          instance_double(BTree::Entry, key: 13)
+        ]
+      end
+
+      it { is_expected.to eq([entries.first]) }
+    end
+
+    context 'when there are multiple matching entries' do
+      let(:entries) do
+        [
+          instance_double(BTree::Entry, key: 11),
+          instance_double(BTree::Entry, key: 11)
+        ]
+      end
+
+      it { is_expected.to eq(entries) }
+    end
 
     it 'calls #find on the entries' do
-      expect(entries).to receive(:find).with(key)
+      expect(entries).to receive(:find_all)
       leaf_node.find(key)
     end
   end

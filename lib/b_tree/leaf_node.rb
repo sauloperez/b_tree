@@ -1,12 +1,5 @@
+
 module BTree
-  class Entry
-    def initialize(key, row_id)
-      @key = key
-      @row_id = row_id
-    end
-
-  end
-
   class LeafNode
 
     def initialize(entries, next_node, previous_node)
@@ -16,6 +9,7 @@ module BTree
     end
 
     def find(key)
+      entries.find_all { |entry| entry.key == key }
     end
 
     private
