@@ -1,13 +1,14 @@
 module BTree
   class BranchNode
-    attr_reader :children
+    attr_reader :entries
 
-    def initialize(children)
-      @children = children
+    def initialize(entries)
+      @entries = entries
     end
 
     def find(key)
-      children.first.find(key)
+      matching_entry = entries.find { |entry| entry.key >= key }
+      matching_entry.find(key)
     end
   end
 end
