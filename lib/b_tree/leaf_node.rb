@@ -1,4 +1,3 @@
-
 module BTree
   class LeafNode
 
@@ -9,6 +8,8 @@ module BTree
     end
 
     def find(key)
+      puts "\tleaf: \t#{entries}"
+
       entries.find_all { |entry| entry.key == key }
     end
 

@@ -8,6 +8,9 @@ module BTree
 
     def find(key)
       matching_entry = entries.find { |entry| entry.key >= key }
+
+      puts "matched entry: \t#{matching_entry}"
+
       matching_entry.find(key)
     end
   end

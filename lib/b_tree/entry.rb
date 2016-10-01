@@ -6,5 +6,9 @@ module BTree
       @key = key
       @row_id = row_id
     end
+
+    def to_s
+      "<#{key}, #{row_id}>"
+    end
   end
 end
